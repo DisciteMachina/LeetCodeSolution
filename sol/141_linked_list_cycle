@@ -1,0 +1,37 @@
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        
+        # First solution using Floyd's Cycle-Finding Algorithim or Floyd's Tortise and Hare Algorithm
+        # Space complexity O(1)
+        # Time complexity O(n)
+        
+        slow = head
+        fast = head
+        
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            
+            if slow == fast:
+                return True
+        return False
+    
+        # Second solution using a set and traversing the linked list
+        # Space complexity O(n)
+        # Time complexity O(n)
+        
+        visited_nodes = {None}
+        current = head
+        
+        while current:
+            if current in visted_nodes:
+                return True
+            visited_nodes.add(current)
+            current = current.next
+        return False
